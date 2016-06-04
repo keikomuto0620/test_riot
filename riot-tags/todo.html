@@ -1,0 +1,79 @@
+<todo>
+  <!-- layout -->
+  <h3>{ opts.title }</h3>
+  <ul>
+    <li each={ item, i in items } class={item3(i)}>{ item }
+      <button onclick={remove} class="btn_cl">消す＼(^O^)／</button>
+    </li>
+  </ul>
+  <form onsubmit={ add }>
+    <input>
+    <button>追加する #{ items.length + 1 }</button>
+  </form>
+  <button　class="btn_cl_all" onclick={removeall} if={hasitem()}>ゼンブ消す＼(^O^)／</button>
+    <!-- style -->
+    <style scoped>
+    h3 {
+      font-size: 14px;
+    }
+
+    li {
+      width: 300px;
+      margin-bottom: 1em;
+      position: relative;
+    }
+
+    .btn_cl {
+      margin: 0 0 0 1em;
+      position: absolute;
+      right: 0;
+    }
+
+    .btn_cl_all {
+      margin: 2em 0;
+    }
+    .red {
+      background-color: red;
+    }
+    .blue {
+      background-color: blue;
+    }
+    </style>
+    <!-- logic -->
+    <script>
+    this.items = ['カメ', 'うさぽん', 'まじぽん', 'うそぴょん']
+
+    add(e) {
+      var input = e.target[0]
+      /*if(input.value = '') {
+        return;
+      }*/
+      this.items.push(input.value)
+      input.value = ''
+    }
+    remove(e) {
+      //var item = e.target
+      //var index = this.items.indexOf(item)
+      this.items.splice(e.item.i, 1)
+    }
+    removeall() {
+      this.items = []
+    }
+    hasitem () {
+      if(this.items.length) {
+        return　true;
+      } else {
+        return false;
+      }
+    }
+    item3 (i) {
+      if(i >= 3 && i <= 5) {
+        return　"red";
+      } else if(i > 5) {
+        return "blue";
+      } else {
+        return ture;
+      }
+    }
+    </script>
+</todo>
